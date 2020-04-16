@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     else {
       setState(() {
-        _currentValue = null;//'Parabéns!! Você jogou com todo o alfabeto';
+        _currentValue = null;
         _playedLetters = [];
       });
     }
