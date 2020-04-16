@@ -73,20 +73,16 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: Stack(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16.0),
+          Align(
+            alignment: Alignment.topCenter,
             child: _buildLettersLeft(),
           ),
-          Text(
-            _currentValue ?? 'Nenhuma letra selecionada',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: _currentValue != null ? 400 : 40,
-            ),
+
+          Align(
+            child: _buildLetter(),
+            alignment: Alignment.center,
           )
         ],
       ),
@@ -97,19 +93,32 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Wrap _buildLettersLeft() {
-    return Wrap(
-      alignment: WrapAlignment.center,
-      spacing: 10,
-      children: _alphabet.map((letter) {
-        return Chip(
-          label: Text(
-            letter,
-            style: TextStyle(color: Colors.white)
-          ),
-          backgroundColor: _playedLetters.contains(letter) ? Colors.grey : Colors.green,
-        );
-      }).toList(),
+  Widget _buildLetter() {
+    return Text(
+      _currentValue ?? 'Nenhuma letra selecionada',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontSize: _currentValue != null ? 400 : 40,
+      ),
+    );
+  }
+
+  Widget _buildLettersLeft() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        spacing: 10,
+        children: _alphabet.map((letter) {
+          return Chip(
+            label: Text(
+              letter,
+              style: TextStyle(color: Colors.white)
+            ),
+            backgroundColor: _playedLetters.contains(letter) ? Colors.grey : Colors.green,
+          );
+        }).toList(),
+      ),
     );
   }
 }
