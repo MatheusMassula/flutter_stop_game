@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     else {
       setState(() {
-        _currentValue = 'Parabéns!! Você jogou com todo o alfabeto';
+        _currentValue = null;//'Parabéns!! Você jogou com todo o alfabeto';
         _playedLetters = [];
       });
     }
@@ -77,8 +77,17 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          _buildLettersLeft(),
-          Text(_currentValue ?? 'Nenhuma letra selecionada'),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: _buildLettersLeft(),
+          ),
+          Text(
+            _currentValue ?? 'Nenhuma letra selecionada',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: _currentValue != null ? 400 : 40,
+            ),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -90,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Wrap _buildLettersLeft() {
     return Wrap(
+      alignment: WrapAlignment.center,
       spacing: 10,
       children: _alphabet.map((letter) {
         return Chip(
