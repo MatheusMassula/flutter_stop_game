@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:stop_game/widgets/timer.dart';
 
 void main() => runApp(MyApp());
 
@@ -86,10 +87,16 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.play_arrow),
-        onPressed: () => _play()
-      ),
+      floatingActionButton: GestureDetector(
+        child: Container(
+          height: 61,
+          width: 61,
+          child: CircularTimer(
+            seconds: 5,
+            onTap: () => _play()
+          )
+        ),
+      )
     );
   }
 
